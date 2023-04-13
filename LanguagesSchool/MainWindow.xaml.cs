@@ -24,7 +24,7 @@ namespace LanguagesSchool
         public MainWindow()
         {
             InitializeComponent();
-            MainFraime.NavigationService.Navigate(new ServicesPage());
+            MainFraime.NavigationService.Navigate(new HomePage());
         }
     }
 }
