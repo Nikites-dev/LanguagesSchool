@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace LanguagesSchool.Pages
 {
@@ -29,6 +31,20 @@ namespace LanguagesSchool.Pages
             if (_service != null)
             {
                 _isEdit = true;
+
+                tbName.Text = _service.Title;
+                tbCost.Text = _service.Cost.ToString();
+                tbDescription.Text = _service.Description;
+                tbID.Text = _service.ID.ToString();
+                tbDiscount.Text = _service.Discount.ToString();
+                tbDuration.Text = $"{_service.DurationInMinutes}:{_service.DurationInSeconds}";
+
+                String stringPath = _service.ImagePath.Replace("/", "\\");
+                Uri imageUri = new Uri(stringPath, UriKind.Relative);
+                BitmapImage imageBitmap = new BitmapImage(imageUri);
+                Image myImage = new Image();
+                myImage.Source = imageBitmap;
+                imgMainImage.Source = myImage.Source;
             }
             else
             {
@@ -89,7 +105,25 @@ namespace LanguagesSchool.Pages
                     return;
                 }
             }
-            App.Connrction.Service.AddOrUpdate(_service);
+
+            if (_isEdit)
+            {
+                
+            }
+            else
+            {
+                _service.Title = tbName.Text;
+                _service.Cost = Convert.ToInt32(tbCost.Text.ToString());
+                _service.DurationInSeconds = Convert.ToInt32(tbDuration.Text.ToString());
+                _service.Description = tbDescription.Text.ToString();
+                _service.Discount = Convert.ToInt32(tbDiscount.Text.ToString());
+                _service.MainImagePath = imgMainImage.Source.ToString();
+                
+                App.Connrction.Service.AddOrUpdate(_service);    
+            }
+
+
+            
             App.Connrction.SaveChanges();
             MessageBox.Show("Успешно", "Сообщение", MessageBoxButton.OK,
                 MessageBoxImage.Information);
@@ -108,6 +142,7 @@ namespace LanguagesSchool.Pages
                 //_service.MainImagePath = $@"Услуги школы\{Path.GetFileName(window.FileName)}";
             }
         }
+        
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -119,6 +154,11 @@ namespace LanguagesSchool.Pages
         private void RemoveServiceImageBtnClick(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

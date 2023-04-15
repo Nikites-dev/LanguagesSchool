@@ -15,5 +15,9 @@ namespace LanguagesSchool
     public partial class App : Application
     {
         public static EnglishEntities Connrction = new EnglishEntities();
+        
+        public static bool IsAdministratorMode { get; set; } = false;
+        public static Visibility AdminVisibility => IsAdministratorMode ? Visibility.Visible : Visibility.Hidden;
+       
     }
 }

@@ -15,7 +15,7 @@ namespace LanguagesSchool.ADOapp
         public string DurationInMinutes => DurationInSeconds == 0 ? "" : $"{DurationInSeconds / 60} минут";
         public string DiscountDisplay => Discount == null || Discount == 0 ? "" : $"* скидка {Discount}%";
         public string ImagePath => $@"/{MainImagePath}";
-        // public Visibility AdminVisibility => App.IsAdministratorMode ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility AdminVisibility => App.IsAdministratorMode ? Visibility.Visible : Visibility.Collapsed;
         public Brush ServiceBackgroundColor => Discount > 0 ? new SolidColorBrush(Color.FromArgb(205, 206, 235, 210))  : Brushes.White;
     }
 }

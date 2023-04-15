@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Windows.Media;
+
 namespace LanguagesSchool.ADOapp
 {
     using System;

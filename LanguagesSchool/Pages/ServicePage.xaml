@@ -27,10 +27,19 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                
+                <StackPanel VerticalAlignment="Top"  Orientation="Horizontal" Grid.Row="0"  Grid.ColumnSpan="3" Background="#e7fabf">
+                    <Image Source="/Images/school_logo.png" Margin="10, 10, 10, 10" Width="50"/>
+                    <TextBlock Text="Языковая школа Леарн" VerticalAlignment="Center"/>
+                </StackPanel>
+                
+                <Button Grid.Column="2" Content="Назад" Height="50" Width="100" HorizontalAlignment="Right" Margin="10" Click="ButtonBase_OnClick"/>
+                
                 <StackPanel Grid.Column="0" Grid.Row="1">
                     <TextBlock x:Name="tblID" Text="ID" Visibility="Collapsed"/>
                     <TextBlock Text="Название"/>
@@ -41,20 +50,17 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Grid.Row="1">
-                    <TextBox x:Name="tbID" Text="{Binding ID}" IsReadOnly="True" Visibility="Collapsed"/>
-                    <TextBox x:Name="tbName" Text="{Binding Title}" SpellCheck.IsEnabled="True" Language="ru-ru" MaxLength="100"/>
-                    <TextBox x:Name="tbCost" Text="{Binding Cost}" SpellCheck.IsEnabled="True" Language="ru-ru"/>
-                    <TextBox x:Name="tbDuration" Text="{Binding DurationInSeconds}" SpellCheck.IsEnabled="True" Language="ru-ru"/>
-                    <TextBox x:Name="tbDescription" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Text="{Binding Description}" SpellCheck.IsEnabled="True" Language="ru-ru"/>
-                    <TextBox x:Name="tbDiscount" Text="{Binding Discount}" SpellCheck.IsEnabled="True" Language="ru-ru"/>
+                    <TextBox x:Name="tbID" IsReadOnly="True" Visibility="Collapsed"/>
+                    <TextBox x:Name="tbName"  SpellCheck.IsEnabled="True" Language="ru-ru" MaxLength="100"/>
+                    <TextBox x:Name="tbCost"  SpellCheck.IsEnabled="True" Language="ru-ru"/>
+                    <TextBox x:Name="tbDuration"  SpellCheck.IsEnabled="True" Language="ru-ru"/>
+                    <TextBox x:Name="tbDescription" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" SpellCheck.IsEnabled="True" Language="ru-ru"/>
+                    <TextBox x:Name="tbDiscount"  SpellCheck.IsEnabled="True" Language="ru-ru"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0 0 0 10">
-                    <Image Source="/school_logo.png" Width="50" Height="50"/>
-                    <Label Content="Языковая школа Леарн" VerticalAlignment="Center"/>
-                </StackPanel>
+              
                 <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">
                     <TextBlock Text="Главное изображение"/>
-                    <Image x:Name="imgMainImage" Source="{Binding ImagePath, UpdateSourceTrigger=Explicit}" Width="150" Height="150" Margin="0 0 0 10"/>
+                    <Image x:Name="imgMainImage" Source="/Услуги школы/Английский язык.jpg" Width="150" Height="150" Margin="0 0 0 10"/>
                     <Button Content="Выбрать" Height="50" Click="MainImageChangeButtonClick"/>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Grid.Column="1">

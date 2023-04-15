@@ -36,14 +36,15 @@ namespace LanguagesSchool.Pages
         {
             InitializeComponent();
             listTemplate.ItemsSource = App.Connrction.Service.ToList();
-
             
+    
 
             List<String> strSort = new List<string> {"Все", "По Возрастанию", "По убыванию"};
             cmbSort.ItemsSource = strSort;
 
             List<String> strFilter = new List<string> { "Все", "От 0% до 5%", "От 5% до 15%", "От 15% до 30%", "От 30% до 70%", "От 70% до 100%"};
             cmbFilter.ItemsSource = strFilter;
+      
         }
 
         public ServicesPage(bool isAdmin)
@@ -51,7 +52,9 @@ namespace LanguagesSchool.Pages
             InitializeComponent();
             listTemplate.ItemsSource = App.Connrction.Service.ToList();
 
-
+            
+            App.IsAdministratorMode = isAdmin;
+            btnAdd.Visibility = App.AdminVisibility;
 
             List<String> strSort = new List<string> { "Все", "По Возрастанию", "По убыванию" };
             cmbSort.ItemsSource = strSort;
@@ -168,11 +171,18 @@ namespace LanguagesSchool.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (listTemplate.SelectedItem != null)
-            {
-                MessageBox.Show(((Service)listTemplate.SelectedItem).Title.ToString());
-            }
-            
+           
+                int serviceId = (int)((Button)sender).Tag;
+                var editService = App.Connrction.Service.FirstOrDefault(x => x.ID == serviceId);
+
+                NavigationService.Navigate(new ServicePage(editService));
+                // UpdateServices();
         }
+        
+        private void Button_Create(object seder, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ServicePage(null));
+        }
+
     }
 }
